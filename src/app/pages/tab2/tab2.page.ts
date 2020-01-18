@@ -26,7 +26,7 @@ export class Tab2Page {
 },
 {
   nombre : 'Pedro',
-  apellidos : 'la Higuera',
+  apellidos : 'la Higuera Muñoz',
   img : '/assets/plh.png',
 },
 {
@@ -38,7 +38,7 @@ export class Tab2Page {
   ];
 
   slideOpts = {
-    slidesPerView : 1.5,
+    slidesPerView : 1.3,
     freeMode : true,
     initialSlide: 1,
     speed: 400
