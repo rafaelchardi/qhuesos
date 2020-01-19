@@ -15,16 +15,22 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './rgrx/app.reducers';
 
 import { AngularFireModule } from '@angular/fire';
-//import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule,
+          HttpClientModule,
+
          AngularFireModule.initializeApp(environment.firebaseConfig),
-  //       AngularFireDatabaseModule, // imports firebase/database, only needed for database features
+         AngularFirestoreModule,
+         AngularFireDatabaseModule, // imports firebase/database, only needed for database features
          AngularFireAuthModule, // imports firebase/auth, only needed for auth features
         StoreModule.forRoot( appReducers ),
         StoreDevtoolsModule.instrument({
@@ -36,6 +42,7 @@ import { environment } from '../environments/environment';
   providers: [
     StatusBar,
     SplashScreen,
+    AngularFireDatabase,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

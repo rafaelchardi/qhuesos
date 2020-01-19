@@ -36,7 +36,7 @@ const routes: Routes = [
             canActivate : [ AuthGuardService ],
             loadChildren: () =>
               import('../tab3/tab3.module').then(m => m.Tab3PageModule)
-          }
+          },
         ]
       },
       {

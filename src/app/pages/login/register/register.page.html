@@ -6,7 +6,7 @@
           <h2 class="text-center mb-4">Registro</h2>
           <div class="auto-form-wrapper">
             <form (ngSubmit)="onSubmit( f.value )"  #f="ngForm">
-             
+              <img src="assets/images/auth/login_1.png"  alt="" />    
               <div class="form-group">
                 <div class="input-group">
 
@@ -70,7 +70,10 @@
                 <span class="text-small font-weight-semibold">ya tienes una cuenta?</span>
                 <br>
                 <a routerLink="/login" class="text-black text-small">Login</a>
+                <br>
+                <ion-button expand="round" fill="outline" [routerLink]="['/']" >Pagina Principal</ion-button>
               </div>
+              
             </form>
           </div>
         </div>

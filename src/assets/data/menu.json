@@ -1,0 +1,14 @@
+[
+    {
+      "icon": "person",
+      "name": "Infomacion Personal",
+      "redirectTo": "infopersonal"
+    },
+    {
+      "icon": "appstore",
+      "name": "Seguimineto",
+      "redirectTo": "/alert"
+    }
+    
+  ]
+  

@@ -1,11 +1,11 @@
 import { User } from './../model/user.model';
 import { Action } from '@ngrx/store';
 
-export const AGREGAR_USER = '[TODO] Agregar usuario';
+export const AGREGAR_USER = '[USUARIO] Establecer usuario';
 
-export const EDITAR_USER = '[TODO] Editar usuario';
+export const EDITAR_USER = '[USUARIO] Modificar usuario';
 
-export const BORRAR_USER = '[TODO] Borrar usuario';
+export const BORRAR_USER = '[USUARIO] Borrar usuario';
 
 
 export class AgregarUserAction implements Action {

@@ -9,8 +9,15 @@ import { Tab3Page } from './tab3.page';
   imports: [
     IonicModule,
     CommonModule,
+
     FormsModule,
-    RouterModule.forChild([{ path: '', component: Tab3Page }])
+     RouterModule.forChild([{ path: '', component: Tab3Page },
+     {
+      path: 'infopersonal',
+       loadChildren: () =>
+       import('../infopersonal/infopersonal.module').then(m => m.InfopersonalPageModule)
+    }])
+
   ],
   declarations: [Tab3Page]
 })
