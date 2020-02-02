@@ -86,5 +86,55 @@
     <ion-title>Extras</ion-title>
   </ion-toolbar>
 </ion-header>
-<div id="principal"></div>
+  
+<div id="principal">
+</div>
+
+
+
+
+<ion-grid>
+  <ion-row>
+    <ion-col text-center>
+      <ion-label >{{user.nombre}}</ion-label>
+    </ion-col> 
+  </ion-row>    
+  <ion-row>
+    <ion-col text-center>
+      <ion-label>{{user.email}}</ion-label>
+    </ion-col> 
+  </ion-row>    
+  <ion-row *ngIf="!encurso">
+    <ion-col text-center>
+      <ion-button  color="success" (click)="iniciarecorrido(true)">
+        Inicia Recorrido
+       <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+      </ion-button>
+    </ion-col> 
+  </ion-row>  
+
+  <ion-row *ngIf="encurso" >
+   
+  <ion-col text-center>
+        <img src="/assets/ciclista.gif"> 
+          <br>
+         <ion-label>Emitiendo cordenadas</ion-label>
+         <br>
+         <ion-label>latidud : {{this.coordenadas.latitude}}</ion-label>         
+         <br>
+         <ion-label>longitud :{{this.coordenadas.longitude}}</ion-label>           
+         <br>
+         <ion-label>Altitud :{{this.coordenadas.altitude}}</ion-label>                    
+         <br>
+         <ion-button  color="success" (click)="iniciarecorrido(false)">
+          Detener Recorrido
+         <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        </ion-button>
+   </ion-col> 
+  </ion-row>  
+    
+<ion-grid>
+
+
+
 

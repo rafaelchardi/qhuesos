@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as firebase from 'firebase';
-import { map, take } from 'rxjs/operators';
+import { map, take, pluck } from 'rxjs/operators';
 
 /// import Swal from 'sweetalert2';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -36,6 +36,7 @@ export class AuthService {
                 ) {
 
                   this.initAuthListener();
+                  this.isAuthCargar().pipe(take(1)).subscribe();
                }
 
 
@@ -48,20 +49,8 @@ export class AuthService {
           } else {
             this.estavalidado = false;
           }
-       });
-
-   /* this.afAuth.authState.subscribe( (fbUser: firebase.User) => {
-
-        this.afDB.doc(`${ fbUser.uid }/usuario`)
-               .get().subscribe((user1: any) => {
-                     const estavalidado = user1._document.proto.fields.activadoAdmin.booleanValue || false;
-                     const usuario = new User (fbUser.displayName, fbUser.email, fbUser.uid , estavalidado);
-                     const accion = new EditarUserAccion( usuario );
-                     this.store.dispatch( accion );
-                   }
-               );
     });
- */
+
   }
 
 
@@ -111,7 +100,9 @@ export class AuthService {
               this.afDB.doc(`${ resp.user.uid }/usuario`)
               .get().subscribe((user1: any) => {
                     const estavalidado = user1._document.proto.fields.activadoAdmin.booleanValue || false;
-                    const usuario = new User (user1.displayName, user1.email, user1.uid , estavalidado);
+                    const usuario = new User (user1._document.proto.fields.nombre.stringValue,
+                                    user1._document.proto.fields.email.stringValue,
+                                    user1._document.proto.fields.uid.stringValue , true);
                     const accion = new EditarUserAccion( usuario );
                     this.store.dispatch( accion );
                     if (estavalidado) { this.router.navigate(['']); }
@@ -140,24 +131,45 @@ export class AuthService {
   }
 
 
-  isAuth() {
 
+  isAuth() {
     return this.afAuth.authState
         .pipe(
           map( fbUser => {
-
             if ( fbUser == null ) {
               this.router.navigate(['/login']);
             } else {
               if (this.estavalidado === true) {
                    return true;
                 } else {
-                    this.router.navigate(['aviso-alta']);
+                     this.router.navigate(['']);
                  }
             }
-
             return (fbUser != null) &&  this.estavalidado;
           })
         );
   }
+
+  isAuthCargar() {
+    return this.afAuth.authState
+        .pipe(
+             map(  fbUser => {
+               if ( fbUser !== null ) {
+                             this.afDB.doc(`${ fbUser.uid }/usuario`).get().
+                             subscribe((user1: any) => {
+                                 if (user1) {
+                                   this.estavalidado = user1._document.proto.fields.activadoAdmin.booleanValue || false;
+                                   const usuario = new User (user1._document.proto.fields.nombre.stringValue,
+                                    user1._document.proto.fields.email.stringValue,
+                                    user1._document.proto.fields.uid.stringValue , this.estavalidado);
+                                   const accion = new EditarUserAccion( usuario );
+                                   this.store.dispatch( accion );
+                                 }
+                                 },
+                                 (error) => {} );
+                                }
+            })
+        );
+  }
+
  }

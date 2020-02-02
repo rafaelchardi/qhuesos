@@ -1,3 +1,4 @@
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -21,13 +22,15 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/da
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { ChatService } from '../providers/chat.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule,
           HttpClientModule,
-
          AngularFireModule.initializeApp(environment.firebaseConfig),
          AngularFirestoreModule,
          AngularFireDatabaseModule, // imports firebase/database, only needed for database features
@@ -40,7 +43,10 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule.forRoot(), AppRoutingModule],
 
   providers: [
+    Geolocation,
+    BackgroundGeolocation,
     StatusBar,
+    ChatService,
     SplashScreen,
     AngularFireDatabase,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

@@ -5,7 +5,10 @@ const routes: Routes = [{
   path: '',
   loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
-
+  {
+    path: 'aviso-alta',
+    loadChildren: () => import('./pages/aviso-alta/aviso-alta.module').then( m => m.AvisoAltaPageModule)
+  },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login/login.module').then( m => m.LoginPageModule)
@@ -15,14 +18,9 @@ const routes: Routes = [{
     loadChildren: () => import('./pages/login/register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'aviso-alta',
-    loadChildren: () => import('./pages/aviso-alta/aviso-alta.module').then( m => m.AvisoAltaPageModule)
+    path: 'mirecorrido',
+    loadChildren: () => import('./pages/mirecorrido/mirecorrido.module').then( m => m.MirecorridoPageModule)
   },
-  {
-    path: 'infopersonal',
-    loadChildren: () => import('./pages/infopersonal/infopersonal.module').then( m => m.InfopersonalPageModule)
-  },
-
 ];
 @NgModule({
   imports: [

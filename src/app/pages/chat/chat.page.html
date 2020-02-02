@@ -1,0 +1,36 @@
+
+<app-header titulo=""></app-header>
+
+
+<ion-content>
+  <div class="chat-window" *ngIf="cs.usuario.uid">
+    <div class="app-mensajes" id="app-mensajes">
+
+       <div *ngFor="let chat of cs.chats"   [ngClass]="{ 'text-right': cs.usuario.uid == chat.uid  }">
+       <span class="badge"
+          [ngClass]="{ 'badge-primary': cs.usuario.uid == chat.uid,
+                        'badge-success': cs.usuario.uid != chat.uid }">
+         {{ chat.nombre }}</span>
+        <p> {{ chat.mensaje }} </p>
+       </div> 
+    </div>
+  </div>  
+</ion-content>
+
+<ion-footer no-border class="chat-pie">
+  <ion-toolbar > 
+    <ion-input  type="text" name="mensaje" [(ngModel)]="mensaje"
+    class="form-control"placeholder="Enviar mensaje">
+    </ion-input>
+
+  
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="enviar_mensaje()">
+        <ion-icon slot="icon-only" name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+  
+</ion-footer>
+

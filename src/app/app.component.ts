@@ -11,6 +11,7 @@ import { User } from './rgrx/model/user.model';
 import { EditarUserAccion } from './rgrx/actions/user.actions';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -27,7 +28,6 @@ export class AppComponent {
     private router: Router
   ) {
     this.initializeApp();
-    //this.router.navigate(['']);
     this.afAuth.authState.subscribe( (fbUser: firebase.User) => {
 
       this.afDB.doc(`${ fbUser.uid }/usuario`)

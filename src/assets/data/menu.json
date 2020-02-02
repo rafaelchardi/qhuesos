@@ -1,14 +1,24 @@
 [
-    {
+  {
+    "icon": "chatbubbles",
+    "name": "Mi Chat",
+    "redirectTo": "chat"
+  },
+  {
+    "icon": "bicycle",
+    "name": "Mi recorrido",
+    "redirectTo": "mirecorrido"
+  },
+  {
       "icon": "person",
       "name": "Infomacion Personal",
       "redirectTo": "infopersonal"
-    },
-    {
+  },
+  {
       "icon": "appstore",
       "name": "Seguimineto",
       "redirectTo": "/alert"
-    }
+   }
     
   ]
   
